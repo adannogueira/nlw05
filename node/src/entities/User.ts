@@ -2,16 +2,13 @@ import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } fro
 import { v4 } from 'uuid'
 
 @Entity()
-export class Setting {
+export class Users {
   @PrimaryColumn()
   id: string
   
   @Column()
-  username: string
+  email: string
   
-  @Column()
-  chat: boolean
- 
   @CreateDateColumn()
   created_at: Date
  

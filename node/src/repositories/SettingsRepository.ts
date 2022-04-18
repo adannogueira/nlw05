@@ -1,4 +1,4 @@
 import { AppDataSource } from '../database';
-import { Setting } from '../entities/setting';
+import { Settings } from '../entities/Setting';
 
-export const SettingsRepository = AppDataSource.getRepository(Setting)
+export const SettingsRepository = AppDataSource.getRepository(Settings)

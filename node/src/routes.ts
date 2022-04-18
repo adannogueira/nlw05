@@ -1,15 +1,10 @@
 import { Router } from 'express';
-import { SettingsRepository } from './repositories/SettingsRepository';
+import { SettingsController } from './controllers/SettingsController';
+import { UsersController } from './controllers/UsersController';
 
 export const routes = Router()
+const settingsController = new SettingsController()
+const usersController = new UsersController()
 
-routes.post('/settings', async (req, res) => {
-  const { chat, username } = req.body
-  const setting = SettingsRepository.create({
-    chat,
-    username
-  })
-
-  await SettingsRepository.save(setting)
-  return res.json(setting)
-})
+routes.post('/settings', settingsController.create)
+routes.post('/users', usersController.create)
