@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs -d src/database/index.ts"
+    "typeorm-migration:run": "typeorm-ts-node-commonjs migration:run -d src/database/index.ts",
+    "typeorm-migration:create": "typeorm-ts-node-commonjs migration:create -d ./ormconfig.json -n"
   },
   "dependencies": {
     "express": "^4.17.3",
