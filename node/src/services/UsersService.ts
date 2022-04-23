@@ -16,4 +16,14 @@ export class UsersService {
     await this.usersRepository.save(user)
     return user
   }
+
+  async findByEmail(email: string) {
+    const user = await this.usersRepository.findOneBy({ email })
+    return user
+  }
+
+  async findOrCreateByEmail(email: string) {
+    const user = await this.findByEmail(email)
+    return user || await this.create(email)
+  }
 }
