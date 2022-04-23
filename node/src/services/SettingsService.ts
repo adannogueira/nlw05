@@ -17,4 +17,23 @@ export class SettingsService {
     await this.settingsRepository.save(setting)
     return setting
   }
+
+  async findByUsername(username: string) {
+    const setting = await this.settingsRepository.findOneBy({
+      username
+    })
+    return setting
+  }
+
+  async update(username: string, chat: boolean) {
+    const setting = await this.settingsRepository.findOneBy({
+      username
+    })
+    if (!setting) {
+      throw new Error('User not found')
+    }
+    setting.chat = chat
+    await this.settingsRepository.save(setting)
+    return setting
+  }
 }

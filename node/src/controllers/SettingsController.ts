@@ -15,4 +15,29 @@ export class SettingsController {
       })
     }
   }
+
+  async findByUsername(request: Request, response: Response): Promise<Response> {
+    const { username } = request.params
+    try {
+      const setting = await this.settingsService.findByUsername(username)
+      return response.json(setting)
+    } catch (error) {
+      return response.status(400).json({
+        error: error.message
+      })
+    }
+  }
+
+  async update(request: Request, response: Response): Promise<Response> {
+    const { username } = request.params
+    const { chat } = request.body
+    try {
+      const setting = await this.settingsService.update(username, chat)
+      return response.json(setting)
+    } catch (error) {
+      return response.status(400).json({
+        error: error.message
+      })
+    }
+  }
 }
