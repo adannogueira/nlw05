@@ -24,4 +24,14 @@ export class ConnectionsService {
       ? await this.connectionsRepository.update(connection.id, { socket_id })
       : await this.create(socket_id, user_id)  
   }
+
+  async listNotAttended () {
+    const connections = await this.connectionsRepository.find({
+      where: {
+        admin_id: null
+      },
+      relations: ['user']
+    })
+    return connections
+  }
 }

@@ -18,5 +18,8 @@ io.on('connect', socket => {
     const user = await usersService.findOrCreateByEmail(email)
     await connectionsService.createOrUpdate(socket.id, user.id)
     await messagesService.create(user.id, text)
+
+    const messages = await messagesService.listByUser(user.id)
+    socket.emit('client_list_all_messages', messages)
   })
 })
