@@ -36,4 +36,9 @@ export class SettingsService {
     await this.settingsRepository.save(setting)
     return setting
   }
+
+  async listSettings() {
+    const setting = await this.settingsRepository.find()
+    return setting
+  }
 }

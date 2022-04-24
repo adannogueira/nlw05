@@ -1,6 +1,5 @@
 import { Request, Response } from 'express'
 import { UsersService } from '../services/UsersService'
-
 export class UsersController {
   constructor(private readonly usersService = new UsersService()) {}
 
@@ -8,6 +7,7 @@ export class UsersController {
     const { email } = request.body
     try {
       const user = await this.usersService.create(email)
+      console.log(this)
       return response.json(user)
     } catch (error) {
       return response.status(400).json({

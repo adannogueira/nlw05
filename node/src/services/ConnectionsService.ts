@@ -1,3 +1,5 @@
+import { IsNull } from 'typeorm'
+import { Connections } from '../entities/Connection'
 import { ConnectionsRepository } from '../repositories/ConnectionsRepository'
 
 export class ConnectionsService {
@@ -28,10 +30,22 @@ export class ConnectionsService {
   async listNotAttended () {
     const connections = await this.connectionsRepository.find({
       where: {
-        admin_id: null
+        admin_id: IsNull()
       },
       relations: ['user']
     })
+    console.log('listando não atendidos')
+    console.log(connections)
     return connections
+  }
+
+  async findBySocketId (socket_id: string) {
+    const connection = await this.connectionsRepository.findOneBy({ socket_id })
+    return connection
+  }
+
+  async updateAttended (user_id: string, admin_id: string) {
+    const connection = await this.findByUserId(user_id)
+    return await this.connectionsRepository.update(connection.id, { admin_id })
   }
 }

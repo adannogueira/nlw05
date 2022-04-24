@@ -1,4 +1,5 @@
 import { http } from './app'
+import 'reflect-metadata'
 import './websocket/client'
 import './websocket/admin'
 

@@ -40,4 +40,9 @@ export class SettingsController {
       })
     }
   }
+
+  async listSettings() {
+    const settings = await this.settingsService.listSettings()
+    return settings
+  }
 }
